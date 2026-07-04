@@ -1,3 +1,4 @@
+// oxlint-disable typescript/method-signature-style
 import { createRequire } from 'node:module';
 import { getBin } from '@node-3d/addon-tools';
 import '@node-3d/segfault';

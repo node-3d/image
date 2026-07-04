@@ -56,13 +56,13 @@ export class Image extends NativeImage {
 	}
 
 	/** Has the underlying native image object been destroyed? */
-	public declare readonly isDestroyed: boolean;
+	declare public readonly isDestroyed: boolean;
 
 	/** Image width in pixels, or `0` before an image is loaded. */
-	public declare readonly width: number;
+	declare public readonly width: number;
 
 	/** Image height in pixels, or `0` before an image is loaded. */
-	public declare readonly height: number;
+	declare public readonly height: number;
 
 	/** Is the image fully loaded? */
 	public get complete(): boolean {
@@ -143,14 +143,14 @@ export class Image extends NativeImage {
 	}
 
 	/** Save the image to a file. Returns `false` if there is no image to save. */
-	public declare save: (dest: string) => boolean;
+	declare public save: (dest: string) => boolean;
 
 	/**
 	 * Draw another image onto this one.
 	 *
 	 * The overloads follow the browser canvas `drawImage()` argument forms.
 	 */
-	public declare drawImage: {
+	declare public drawImage: {
 		(image: Image, dx: number, dy: number): void;
 		(image: Image, dx: number, dy: number, dWidth: number, dHeight: number): void;
 		(
@@ -336,9 +336,9 @@ export class Image extends NativeImage {
 	// Decode data URI payloads before handing bytes to the native decoder.
 	private loadDataUri(src: string): void {
 		const [head = '', body = ''] = src.split(',', 2);
-		const data = head.includes('base64') ?
-			Buffer.from(body, 'base64') :
-			Buffer.from(decodeURIComponent(body));
+		const data = head.includes('base64')
+			? Buffer.from(body, 'base64')
+			: Buffer.from(decodeURIComponent(body));
 
 		this._load(data);
 	}

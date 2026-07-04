@@ -24,9 +24,8 @@ const props = [
 
 const methods = ['on', 'save', 'drawImage'] as const;
 
-const testDataPath = (name: string): string => (
-	path.resolve(import.meta.dirname, '..', 'examples', 'assets', name)
-);
+const testDataPath = (name: string): string =>
+	path.resolve(import.meta.dirname, '..', 'examples', 'assets', name);
 
 const loadImageAsync = async (name: string): Promise<Image> => {
 	const image = new Image();
@@ -90,7 +89,9 @@ describe('Image', () => {
 		const image = new Image();
 
 		const that = await new Promise((res, rej) => {
-			image.addEventListener('load', function onLoad(this: Image) { res(this); });
+			image.addEventListener('load', function onLoad(this: Image) {
+				res(this);
+			});
 			image.addEventListener('error', rej);
 			image.src = testDataPath('freeimage.jpg');
 		});
@@ -102,7 +103,9 @@ describe('Image', () => {
 		const image = await loadImageAsync('freeimage.jpg');
 
 		const that = await new Promise((res, rej) => {
-			image.addEventListener('load', function onLoad(this: Image) { res(this); });
+			image.addEventListener('load', function onLoad(this: Image) {
+				res(this);
+			});
 			image.addEventListener('error', rej);
 		});
 
@@ -113,7 +116,9 @@ describe('Image', () => {
 		const image = new Image();
 
 		const that = await new Promise((res, rej) => {
-			image.on('load', function onLoad(this: Image) { res(this); });
+			image.on('load', function onLoad(this: Image) {
+				res(this);
+			});
 			image.on('error', rej);
 			image.src = testDataPath('freeimage.jpg');
 		});
@@ -125,7 +130,9 @@ describe('Image', () => {
 		const image = await loadImageAsync('freeimage.jpg');
 
 		const that = await new Promise((res, rej) => {
-			image.on('load', function onLoad(this: Image) { res(this); });
+			image.on('load', function onLoad(this: Image) {
+				res(this);
+			});
 			image.on('error', rej);
 		});
 
@@ -136,7 +143,9 @@ describe('Image', () => {
 		const image = new Image();
 
 		const that = await new Promise((res, rej) => {
-			image.once('load', function onLoad(this: Image) { res(this); });
+			image.once('load', function onLoad(this: Image) {
+				res(this);
+			});
 			image.once('error', rej);
 			image.src = testDataPath('freeimage.jpg');
 		});
@@ -148,7 +157,9 @@ describe('Image', () => {
 		const image = await loadImageAsync('freeimage.jpg');
 
 		const that = await new Promise((res, rej) => {
-			image.once('load', function onLoad(this: Image) { res(this); });
+			image.once('load', function onLoad(this: Image) {
+				res(this);
+			});
 			image.once('error', rej);
 		});
 
