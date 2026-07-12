@@ -5,29 +5,29 @@
 #include <addon-tools.hpp>
 
 class Image {
-DECLARE_ES5_CLASS(Image, Image);
-	
-public:
+	DECLARE_ES5_CLASS(Image, Image);
+
+  public:
 	static void init(Napi::Env env, Napi::Object exports);
-	explicit Image(const Napi::CallbackInfo& info);
+	explicit Image(const Napi::CallbackInfo &info);
 	~Image();
-	
+
 	void _destroy();
-	
-private:
+
+  private:
 	JS_DECLARE_GETTER(Image, isDestroyed);
 	JS_DECLARE_GETTER(Image, width);
 	JS_DECLARE_GETTER(Image, height);
-	
+
 	JS_DECLARE_METHOD(Image, destroy);
 	JS_DECLARE_METHOD(Image, _load);
 	JS_DECLARE_METHOD(Image, _unload);
 	JS_DECLARE_METHOD(Image, save);
 	JS_DECLARE_METHOD(Image, drawImage);
-	
-	void emit(const Napi::CallbackInfo& info, const char* name);
-	void emitError(const Napi::CallbackInfo& info, const char* message);
-	
+
+	void emit(const Napi::CallbackInfo &info, const char *name);
+	void emitError(const Napi::CallbackInfo &info, const char *message);
+
 	bool _isDestroyed;
 	FIBITMAP *_bitmap;
 };
