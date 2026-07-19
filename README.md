@@ -11,18 +11,7 @@ This is a part of [Node3D](https://github.com/node-3d) project.
 npm install @node-3d/image
 ```
 
-## Binary Origin
 
-Release archives are built by this repository's public GitHub Actions workflows.
-
-Attestations: https://github.com/node-3d/image/attestations
-
-To verify a downloaded archive:
-
-```bash
-gh release download <tag> -R node-3d/image -p <platform>.gz
-gh attestation verify <platform>.gz -R node-3d/image
-```
 
 Using [FreeImage](http://freeimage.sourceforge.net/), this addon loads images from:
 * Local file.
@@ -116,4 +105,17 @@ gl.readPixels(
 const img = Image.fromPixels(screen.w, screen.h, 32, storage.data);
 
 img.save(`${Date.now()}.jpg`);
+```
+
+## Binary Origin
+
+Release archives are built by this repository's public GitHub Actions workflows.
+
+Attestations: https://github.com/node-3d/image/attestations
+
+To verify a downloaded archive:
+
+```bash
+gh release download <tag> -R node-3d/image -p <platform>.gz
+gh attestation verify <platform>.gz -R node-3d/image
 ```
