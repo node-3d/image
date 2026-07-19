@@ -30,7 +30,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Modules
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Install Cpplint
         run: pip install cpplint
@@ -38,4 +38,4 @@ jobs:
       - name: Run Cpplint
         run: |
           node -e "import('@node-3d/addon-tools').then((m) => m.cpcpplint())"
-          cpplint --recursive ./src
+          cpplint --recursive ./src/cpp
