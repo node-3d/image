@@ -11,6 +11,11 @@
 		"sourceMap": false,
 		"rootDir": ".",
 		"outDir": "dist",
+		"paths": {
+			"@node-3d/image": [
+				"./ts/index.ts"
+			]
+		},
 		"verbatimModuleSyntax": true,
 		"skipLibCheck": true,
 		"types": [

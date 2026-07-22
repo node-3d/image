@@ -7,6 +7,7 @@
 node_modules/
 .rslib/
 .clang-format
+CPPLINT.cfg
 dist/
 src/build/
 src/node_modules/

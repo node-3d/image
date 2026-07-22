@@ -13,7 +13,8 @@ npm install @node-3d/image
 
 
 
-Using [FreeImage](http://freeimage.sourceforge.net/), this addon loads images from:
+Using [FreeImageRe](https://github.com/berkus/freeimage) through
+[@node-3d/deps-freeimage](https://github.com/node-3d/deps-freeimage), this addon loads images from:
 * Local file.
 * Data URI.
 * Http(s) URL.
