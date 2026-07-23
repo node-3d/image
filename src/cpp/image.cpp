@@ -56,7 +56,7 @@ JS_IMPLEMENT_GETTER(Image, height) {
 inline Napi::Buffer<uint8_t> createBuffer(Napi::Env env, FIBITMAP *bmp) {
 	size_t pixelCount = FreeImage_GetWidth(bmp) * FreeImage_GetHeight(bmp);
 	size_t byteCount = pixelCount * 4;
-	const BYTE *src = FreeImage_GetBits(bmp);
+	const uint8_t *src = FreeImage_GetBits(bmp);
 
 	Napi::Buffer<uint8_t> buffer = Napi::Buffer<uint8_t>::New(env, byteCount);
 	uint8_t *dest = buffer.Data();
@@ -78,7 +78,7 @@ JS_IMPLEMENT_METHOD(Image, _load) {
 	REQ_BUF_ARG(0, file);
 	LET_BOOL_ARG(1, swapBytes);
 
-	BYTE *bufferData = reinterpret_cast<BYTE *>(file.Data());
+	uint8_t *bufferData = reinterpret_cast<uint8_t *>(file.Data());
 	size_t bufferLength = file.Length();
 
 	FIMEMORY *memStream = FreeImage_OpenMemory(bufferData, bufferLength);
@@ -119,11 +119,11 @@ JS_IMPLEMENT_METHOD(Image, _load) {
 	// Swap R-B bytes?
 	if (swapBytes) {
 		size_t pixelCount = (FreeImage_GetWidth(_bitmap) * FreeImage_GetHeight(_bitmap));
-		BYTE *pixels = FreeImage_GetBits(_bitmap);
+		uint8_t *pixels = FreeImage_GetBits(_bitmap);
 
 		for (size_t i = 0; i < pixelCount; i++) {
 			size_t i4 = i << 2;
-			BYTE temp = pixels[i4 + 0];
+			uint8_t temp = pixels[i4 + 0];
 			pixels[i4 + 0] = pixels[i4 + 2];
 			pixels[i4 + 2] = temp;
 		}
