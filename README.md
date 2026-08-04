@@ -25,6 +25,12 @@ The Image class is similar to
 [HTMLImageElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/Image),
 and can be used as a replacement in non-DOM environments.
 
+The `@node-3d/deps-freeimage` dependency entrypoint preserves the Windows PATH
+setup behavior that older `deps-freeimage-raub` consumers relied on through
+addon-tools `getPaths()`. A normal `npm install` or `npm ci` should run
+dependency install scripts in order, so consumers should not need manual
+FreeImage setup in CI.
+
 Additional features:
 * `save` - saves the image to a local file.
 * `drawImage` - is similar to
@@ -120,3 +126,7 @@ To verify a downloaded archive:
 gh release download <tag> -R node-3d/image -p <platform>.gz
 gh attestation verify <platform>.gz -R node-3d/image
 ```
+
+Release packaging should avoid re-archiving previously downloaded release
+archives into new build artifacts. Clean stale downloaded `*.gz` files before
+producing platform archives.
