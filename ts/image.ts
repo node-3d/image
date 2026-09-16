@@ -14,7 +14,7 @@ export type TImageEvent = {
 	[key: string]: unknown;
 };
 
-export type TImageEventCallback = (this: Image, event?: unknown) => unknown;
+export type TImageEventCallback = (this: Image, event?: unknown) => void;
 
 type TNativeImageWithEvents = TNativeImage & EventEmitter;
 
@@ -124,7 +124,9 @@ export class Image extends NativeImage {
 		}
 
 		if (this._src.startsWith('blob:nodedata:')) {
-			this.loadBlobUrl(this._src);
+			(async () => {
+				await this.loadBlobUrl(this._src);
+			})();
 			return;
 		}
 
@@ -135,7 +137,9 @@ export class Image extends NativeImage {
 		}
 
 		if (/^https?:\/\//iu.test(this._src)) {
-			this.loadRemote(this._src);
+			(async () => {
+				await this.loadRemote(this._src);
+			})();
 			return;
 		}
 
@@ -171,6 +175,7 @@ export class Image extends NativeImage {
 	 *
 	 * Setting `null` or `undefined` removes all current error listeners.
 	 */
+	// oxlint-disable-next-line typescript/related-getter-setter-pairs
 	public get onerror(): readonly TImageEventCallback[] {
 		return this.listeners('error') as TImageEventCallback[];
 	}
@@ -188,6 +193,7 @@ export class Image extends NativeImage {
 	 *
 	 * Setting `null` or `undefined` removes all current load listeners.
 	 */
+	// oxlint-disable-next-line typescript/related-getter-setter-pairs
 	public get onload(): readonly TImageEventCallback[] {
 		return this.listeners('load') as TImageEventCallback[];
 	}
@@ -277,7 +283,7 @@ export class Image extends NativeImage {
 	}
 
 	/** Load an image and resolve after its `load` event fires. */
-	public static loadAsync(src: string): Promise<Image> {
+	public static async loadAsync(src: string): Promise<Image> {
 		return new Promise((res, rej) => {
 			const image = new Image();
 

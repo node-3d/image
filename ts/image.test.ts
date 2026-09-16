@@ -7,7 +7,7 @@ const TEST_IMAGE_WIDTH = 283;
 const TEST_IMAGE_HEIGHT = 71;
 const TEST_STRETCH_WIDTH = 512;
 const TEST_STRETCH_HEIGHT = 128;
-const TEST_IMAGE_LENGTH = 80372;
+const TEST_IMAGE_LENGTH = 80_372;
 
 const props = [
 	'complete',
